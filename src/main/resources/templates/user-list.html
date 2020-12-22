@@ -19,11 +19,11 @@
             </thead>
             <tbody>
             <tr th:each="users : ${users}">
-                <td th:text="${users.idUser}"></td>
+                <td th:text="${users.id}"></td>
                 <td th:text="${users.login}"></td>
                 <td th:text="${users.password}"></td>
-                <td><a th:href="@{user-update/{id}(id=${users.idUser})}">Edit</a></td>
-                <td><a th:href="@{user-delete/{id}(id=${users.idUser})}">Delete</a></td>
+                <td><a th:href="@{user-update/{id}(id=${users.id})}">Edit</a></td>
+                <td><a th:href="@{user-delete/{id}(id=${users.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>

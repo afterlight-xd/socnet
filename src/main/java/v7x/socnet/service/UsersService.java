@@ -23,6 +23,7 @@ public class UsersService {
     public List<Users> findAll(){
         return usersRepository.findAll();
     }
+
     public Users saveUsers(Users users){
         return usersRepository.save(users);
     }
