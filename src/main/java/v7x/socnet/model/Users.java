@@ -12,13 +12,26 @@ public class Users {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="id_user_seq")
     @SequenceGenerator(name="id_user_seq", schema = "soc_net", sequenceName="id_user_seq", allocationSize = 1)
-    @Column(name = "id_user") private Long id;
-    @Column(name = "login") private String login;
-    @Column(name = "password") private String password;
-    @Column(name = "at_username") private String atUsername;
-    @Column(name = "user_firstname") private String userFirstname;
-    @Column(name = "user_secondname") private String userSecondname;
-    @Column(name = "email") private String email;
+    @Column(name = "id_user")
+    private Long id;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "at_username")
+    private String atUsername;
+    @Column(name = "user_firstname")
+    private String userFirstname;
+    @Column(name = "user_secondname")
+    private String userSecondname;
+    @Column(name = "email")
+    private String email;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
     public Users() { }
 
