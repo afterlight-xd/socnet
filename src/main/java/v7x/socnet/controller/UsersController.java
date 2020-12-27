@@ -1,6 +1,8 @@
 package v7x.socnet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,9 @@ public class UsersController {
     public String findAll(Model model){
         List<Users> users = usersService.findAll();
         model.addAttribute("users", users);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users currentUser = usersService.findByLogin(auth.getName());
+        model.addAttribute("current", currentUser);
         return "user-list";
     }
 
@@ -56,5 +61,15 @@ public class UsersController {
     public String updateUser(Users users){
         usersService.saveUsers(users);
         return "redirect:/users";
+    }
+
+    @GetMapping("/index")
+    public String getIndexPage(){
+        return "index";
+    }
+
+    @GetMapping("/")
+    public String redirectIndexPage(){
+        return "redirect:/index";
     }
 }

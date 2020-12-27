@@ -1,6 +1,7 @@
 package v7x.socnet.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import v7x.socnet.model.Users;
 import v7x.socnet.repository.UsersRepository;
@@ -16,8 +17,12 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    public Users findById(long id){
-        return usersRepository.getOne(id);
+    public Users findById(long id){ return usersRepository.getOne(id);
+    }
+
+    public Users findByLogin(String login){
+        return usersRepository.findByLogin(login).orElseThrow(() ->
+                new UsernameNotFoundException("user doesn't exist"));
     }
 
     public List<Users> findAll(){

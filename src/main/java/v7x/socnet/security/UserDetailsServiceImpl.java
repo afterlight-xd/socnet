@@ -11,6 +11,7 @@ import v7x.socnet.repository.UsersRepository;
 
 @Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     private final UsersRepository usersRepository;
 
     @Autowired
