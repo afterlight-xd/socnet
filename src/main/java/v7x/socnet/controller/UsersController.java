@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import v7x.socnet.model.Role;
+import v7x.socnet.model.Status;
 import v7x.socnet.model.Users;
 import v7x.socnet.service.UsersService;
 
@@ -68,6 +70,8 @@ public class UsersController {
     @PostMapping("/user-update")
     public String updateUser(Users users){
         users.setPassword(new BCryptPasswordEncoder(12).encode(users.getPassword()));
+        users.setStatus(Status.ACTIVE);
+        users.setRole(Role.USER);
         usersService.saveUsers(users);
         return "redirect:/users";
     }
@@ -85,8 +89,8 @@ public class UsersController {
     public String getUserpage(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.isAuthenticated()) {
-            Users currentUser = usersService.findByLogin(auth.getName());
-            model.addAttribute("currentUser", currentUser);
+            Users user = usersService.findByLogin(auth.getName());
+            model.addAttribute("user", user);
             return "/userpage";
         }
         else
