@@ -85,8 +85,8 @@ public class UsersController {
     public String getUserpage(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.isAuthenticated()) {
-            Users currentUser = usersService.findByLogin(auth.getName());
-            model.addAttribute("currentUser", currentUser);
+            Users user = usersService.findByLogin(auth.getName());
+            model.addAttribute("user", user);
             return "/userpage";
         }
         else
