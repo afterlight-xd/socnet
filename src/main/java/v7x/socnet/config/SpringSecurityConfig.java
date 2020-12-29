@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,8 +33,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                        .antMatchers("/*").permitAll()
                         .antMatchers("/index").permitAll()
                         .antMatchers("/register").permitAll()
+                        .antMatchers("/images/**").permitAll()
                         //.antMatchers("/users").permitAll()
                         .anyRequest()
                         .authenticated()
@@ -48,6 +51,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
                         .logoutSuccessUrl("/auth/login");
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers(
+                // статика
+                "/css/**",
+                "/static/js/**",
+                "/fonts/**",
+                "/images/**"
+        );
     }
 
     @Override

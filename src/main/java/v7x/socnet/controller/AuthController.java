@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import v7x.socnet.model.Users;
 import v7x.socnet.security.UserDetailsServiceImpl;
 
 
@@ -15,6 +16,9 @@ public class AuthController {
 
     @GetMapping("/login")
     public String getLoginPage(){
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth.isAuthenticated())
+//            return "redirect:../userpage";
         return "login";
     }
 
@@ -22,6 +26,7 @@ public class AuthController {
     public String getSuccessPage() {
         return "success";
     }
+
 
 //    @GetMapping("/")
 //    public String getLoginPage2() {

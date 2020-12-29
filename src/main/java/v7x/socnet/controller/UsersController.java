@@ -3,6 +3,7 @@ package v7x.socnet.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class UsersController {
         model.addAttribute("users", users);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Users currentUser = usersService.findByLogin(auth.getName());
-        model.addAttribute("current", currentUser);
+        model.addAttribute("currentUser", currentUser);
         return "user-list";
     }
 
@@ -40,6 +41,7 @@ public class UsersController {
 
     @PostMapping("/user-create")
     public String createUsers(Users users){
+        users.setPassword(new BCryptPasswordEncoder(12).encode(users.getPassword()));
         usersService.saveUsers(users);
         return "redirect:/users";
     }
@@ -59,17 +61,38 @@ public class UsersController {
 
     @PostMapping("/user-update")
     public String updateUser(Users users){
+        users.setPassword(new BCryptPasswordEncoder(12).encode(users.getPassword()));
         usersService.saveUsers(users);
         return "redirect:/users";
     }
 
     @GetMapping("/index")
-    public String getIndexPage(){
-        return "index";
-    }
+    //public String getIndexPage(){ return "index"; }
+    public String getIndexPage(){ return "redirect:/users"; }
 
     @GetMapping("/")
     public String redirectIndexPage(){
+        return "redirect:/index";
+    }
+
+    @GetMapping("/userpage")
+    public String getUserpage(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.isAuthenticated()) {
+            Users currentUser = usersService.findByLogin(auth.getName());
+            model.addAttribute("currentUser", currentUser);
+            return "/userpage";
+        }
+        else
+            return "redirect:/auth/login";
+    }
+
+    @GetMapping("/register")
+    public String getRegisterPage(){return "register";}
+
+    @PostMapping("/register")
+    public String registerUser(Users users){
+        usersService.saveUsers(users);
         return "redirect:/index";
     }
 }

@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="UTF-8">
-<title>Create user</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Create user</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-update}" th:object="${users}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="login">Login</label>
-    <input type="text" th:field="*{login}" id="login" placeholder="Login">
-    <br/>
-    <label for="password">Password</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="Password">
-    <br/>
-    <label for="userFirstname">First Name</label>
-    <input type="text" th:field="*{userFirstname}" id="userFirstname" placeholder="First Name">
-    <br/>
-    <label for="userSecondname">Second Name</label>
-    <input type="text" th:field="*{userSecondname}" id="userSecondname" placeholder="Second Name">
-    <br/>
-    <input type="submit" value="Update User">
+    <br>
+    <div class="container">
+    <div class="row">
+        <div class="col-6">
+       <form action="#" th:action="@{/user-update}" th:object="${users}" method="post">
+<div class="mb-3 ">
+<label for="ID" class="col-form-label">ID</label>
+<input type="text"  th:field="*{id}" id="ID" class="form-control">
+</div>
+    <div class="mb-3 ">
+     <label for="login" class="col-form-label">Login</label>
+      <input type="text"  th:field="*{login}" id="login" class="form-control">
+ </div>
+   <div class="mb-3 ">
+    <label for="inputPassword6" class="col-form-label">Password</label>
+    <input type="password"  th:field="*{password}" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+</div>
+    <div class="mb-3 ">
+    <label for="userFirstname" class="col-form-label">First Name</label>
+    <input type="text"  th:field="*{userFirstname}" id="userFirstname" class="form-control">
+</div>
+   <div class="mb-3 ">
+    <label for="userSecondname" class="col-form-label">Second Name</label>
+    <input type="text"  th:field="*{userSecondname}" id="userFirstname" class="form-control">
+</div>
+              <input class="btn btn-outline-primary" type="submit" value="Update User">
 </form>
+        </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>
