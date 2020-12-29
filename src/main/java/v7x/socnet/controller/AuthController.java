@@ -27,19 +27,4 @@ public class AuthController {
         return "success";
     }
 
-
-//    @GetMapping("/")
-//    public String getLoginPage2() {
-//        return "redirect:/login";
-//    }
-
-//    @GetMapping("/auth")
-//    public String getRedirected() {
-//        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated())
-//            return "redirect:/index";
-//        else
-//            return "redirect:/auth/login";
-//    }
-
-
 }
