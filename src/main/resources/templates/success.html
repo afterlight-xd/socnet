@@ -1,6 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+  
+
 <div class="container">
-    <h1>Congrats!!! You did it!</h1>
-    <form action="/auth/logout" method="POST">
-        <button type="submit">Logout</button>
+    <div class="row">
+        <div class="col">
+           <br>
+            <p class="h5" >You have successfully logged in!</p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="/users"><button class="btn btn-outline-primary" type="submit">User List</button> </a>  
+                <a href="/userpage"><button class="btn btn-outline-primary" type="submit">Userpage</button></a>
+             <form action="/auth/logout" method="POST">
+        <button class="btn btn-outline-dark" type="submit">Logout</button>
     </form>
+        </div>
+            </div>
+    </div>
+
 </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+ 
+  </body>
+</html>
