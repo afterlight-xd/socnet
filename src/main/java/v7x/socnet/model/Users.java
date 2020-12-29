@@ -38,6 +38,7 @@ public class Users {
     public Users(String login, String password) {
         this.login = login;
         this.password = password;
+        this.status = Status.ACTIVE;
         this.role = Role.USER;
     }
 
@@ -47,6 +48,7 @@ public class Users {
         this.userFirstname = userFirstname;
         this.userSecondname = userSecondname;
         this.email = email;
+        this.status = Status.ACTIVE;
         this.role = Role.USER;
     }
 }
