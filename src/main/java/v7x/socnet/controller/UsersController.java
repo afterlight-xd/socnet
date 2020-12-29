@@ -24,6 +24,12 @@ public class UsersController {
         this.usersService = usersService;
     }
 
+
+    @GetMapping("/140.jpg")
+    public String loginJPG(){
+        return ("/images/140.jpg");
+    }
+
     @GetMapping("/users")
     public String findAll(Model model){
         List<Users> users = usersService.findAll();
